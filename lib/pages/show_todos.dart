@@ -15,17 +15,29 @@ class ShowTodos extends StatelessWidget {
         listeners: [
           BlocListener<TodoListCubit, TodoListState>(
             listener: (context, state) {
-              context.read<FilteredTodosCubit>().setFilteredTodos();
+              context.read<FilteredTodosCubit>().setFilteredTodos(
+                    context.read<TodoFilterCubit>().state.filter,
+                    state.todos,
+                    context.read<TodoSearchCubit>().state.searchTerm,
+                  );
             },
           ),
           BlocListener<TodoFilterCubit, TodoFilterState>(
             listener: (context, state) {
-              context.read<FilteredTodosCubit>().setFilteredTodos();
+              context.read<FilteredTodosCubit>().setFilteredTodos(
+                    state.filter,
+                    context.read<TodoListCubit>().state.todos,
+                    context.read<TodoSearchCubit>().state.searchTerm,
+                  );
             },
           ),
           BlocListener<TodoSearchCubit, TodoSearchState>(
             listener: (context, state) {
-              context.read<FilteredTodosCubit>().setFilteredTodos();
+              context.read<FilteredTodosCubit>().setFilteredTodos(
+                    context.read<TodoFilterCubit>().state.filter,
+                    context.read<TodoListCubit>().state.todos,
+                    state.searchTerm,
+                  );
             },
           ),
         ],
