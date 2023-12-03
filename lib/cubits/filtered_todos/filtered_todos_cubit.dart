@@ -8,7 +8,7 @@ class FilteredTodosCubit extends Cubit<FilteredTodosState> {
   final List<Todo> initialTodos;
   FilteredTodosCubit({
     required this.initialTodos,
-  }) : super(FilteredTodosState(filteredTodos: initialTodos)) {}
+  }) : super(FilteredTodosState(filteredTodos: initialTodos));
 
   void setFilteredTodos(Filter filter, List<Todo> todos, String searchTerm) {
     List<Todo> filteredTodos;
